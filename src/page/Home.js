@@ -7,6 +7,7 @@ import React, { Component } from 'react';
 import { Image, StyleSheet, Alert, TouchableOpacity } from 'react-native';
 import { Container, Content, View, Button, Left, Right, Thumbnail, Icon, Card, CardItem, Body, List, ListItem } from 'native-base';
 import { Actions } from 'react-native-router-flux';
+
 import BgImg from '../assets/bg.jpg';
 // Our custom files and classes import
 import Text from '../component/Text';
@@ -47,15 +48,12 @@ export default class Home extends Component {
       </Right>
     );
     var accountData = [];
-    for (let index = 0; index < 10; index++) {
+    for (let index = 0; index < 20; index++) {
       accountData.push(
-        <ListItem thumbnail key={index}>
-          <Left>
-            <Thumbnail square source={require('../assets/bg.jpg')} />
-          </Left>
+        <ListItem thumbnail key={index} >
           <Body>
-            <Text>SB- Saving A/c </Text>
-            <Text note numberOfLines={1}>20194283779</Text>
+            <Text style={styles.textColor}>SB- Saving A/c </Text>
+            <Text style={styles.textColor} note numberOfLines={1} >20194283779</Text>
           </Body>
           <Right>
             <Button transparent>
@@ -68,11 +66,11 @@ export default class Home extends Component {
     let activeTab = null;
     if (this.state.activeTab == 'accounts') {
       activeTab = <View style={styles.tabView}>
-        <Text style={{ textAlign: 'center', fontSize: 15 }}>Clear Balance [Primary A/c]</Text>
-        <Text style={{ textAlign: 'center', fontSize: 14 }}>Rs. 1955.05 Cr.</Text>
+        <Text style={styles.textColorTitle}>Clear Balance [Primary A/c]</Text>
+        <Text style={styles.textColorTitle}>Rs. 1955.05 Cr.</Text>
         <Container>
           <Content>
-            <List>
+            <List >
               {accountData}
             </List>
           </Content>
@@ -80,8 +78,8 @@ export default class Home extends Component {
       </View>
     } else if (this.state.activeTab == 'deposits') {
       activeTab = <View style={styles.tabView}>
-        <Text style={{ textAlign: 'center', fontSize: 15 }}>Clear Balance [Primary A/c]</Text>
-        <Text style={{ textAlign: 'center', fontSize: 14 }}>Rs. 1955.05 Cr.</Text>
+        <Text style={styles.textColorTitle}>Clear Balance [Primary A/c]</Text>
+        <Text style={styles.textColorTitle}>Rs. 1955.05 Cr.</Text>
         <Container>
           <Content>
             <List>
@@ -92,8 +90,8 @@ export default class Home extends Component {
       </View>
     } else if (this.state.activeTab == 'loans') {
       activeTab = <View style={styles.tabView}>
-        <Text style={{ textAlign: 'center', fontSize: 15 }}>Clear Balance [Primary A/c]</Text>
-        <Text style={{ textAlign: 'center', fontSize: 14 }}>Rs. 1955.05 Cr.</Text>
+        <Text style={styles.textColorTitle}>Clear Balance [Primary A/c]</Text>
+        <Text style={styles.textColorTitle}>Rs. 1955.05 Cr.</Text>
         <Container>
           <Content>
             <List>
@@ -151,16 +149,28 @@ export default class Home extends Component {
 }
 
 let styles = StyleSheet.create({
+  textColor: {
+    color: '#004f86',
+    fontWeight: '200',
+    fontSize: 15
+  },
+  textColorTitle: {
+    color: '#004080',
+    fontWeight: '200',
+    fontSize: 17,
+    textAlign: 'center'
+  },
   centerAlign: {
     textAlign: 'center',
     fontSize: 15,
-    color: 'black'
+    color: '#004080'
   },
   companyName: {
     textAlign: 'center',
     fontSize: 20,
     marginBottom: 10,
-    marginTop: 10
+    marginTop: 10,
+    color: '#004080'
   },
   line: {
     width: '100%',
@@ -192,6 +202,7 @@ let styles = StyleSheet.create({
 
   tabView: {
     flex: 1,
+    height: 450
   },
   border: {
     position: 'absolute',
