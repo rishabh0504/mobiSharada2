@@ -31,9 +31,9 @@ export default class Home extends Component {
 
   getStyle = (item) => {
     if (item === this.state.activeTab) {
-      return styles.activeTab
+      return StyleSheet.flatten([styles.activeTab, styles.activeColor])
     } else {
-      return styles.tab
+      return StyleSheet.flatten([styles.activeTab, styles.inactiveColor])
     }
   }
 
@@ -75,8 +75,10 @@ export default class Home extends Component {
     let activeTab = null;
     if (this.state.activeTab == 'accounts') {
       activeTab = <View style={styles.tabView}>
-        <Text style={{ textAlign: 'center', fontSize: 18 }}>Clear Balance [Primary A/c]</Text>
-        <Text style={{ textAlign: 'center', fontSize: 18 }}>Rs. 1955.05 Cr.</Text>
+
+        <Text style={{ textAlign: 'center', fontSize: 18, color: 'black' }}>Clear Balance [Primary A/c]</Text>
+        <Text style={{ textAlign: 'center', fontSize: 16, color: 'black' }}>Rs. 1955.05 Cr.</Text>
+        <Text style={{ alignSelf: 'flex-end', fontSize: 14, color: 'red', marginRight: 10, marginBottom: 10 }}>Last Login : 02-Dec-2019 09:08</Text>
         <Container>
           <Content>
             <List>
@@ -87,11 +89,11 @@ export default class Home extends Component {
       </View>
     } else if (this.state.activeTab == 'deposits') {
       activeTab = <View style={styles.tabView} >
-        <Text style={styles.centerAlign}>Deposits</Text>
+        <Text style={styles.centerAlign}>{this.state.activeTab}</Text>
       </View>
     } else if (this.state.activeTab == 'loans') {
       activeTab = <View style={styles.tabView} >
-        <Text style={styles.centerAlign}>Loans</Text>
+        <Text style={styles.centerAlign}>{this.state.activeTab}</Text>
       </View>
     }
 
@@ -102,18 +104,18 @@ export default class Home extends Component {
           <Navbar left={left} right={right} title="mobiSharada" />
           <Content>
             <View style={{ flex: 1, flexDirection: 'row', marginTop: 10 }}>
-              <View style={this.getStyle('accounts')}>
-                <TouchableOpacity onPress={() => { this.activateTab('accounts') }}>
+              <View style={styles.tabCss}>
+                <TouchableOpacity onPress={() => { this.activateTab('accounts') }} style={[(this.state.activeTab === 'accounts') ? styles.activeTab : styles.inactiveTab]}>
                   <Text style={styles.centerAlign} >Accounts</Text>
                 </TouchableOpacity>
               </View>
-              <View style={this.getStyle('deposites')} >
-                <TouchableOpacity onPress={() => { this.activateTab('deposits') }}>
+              <View style={styles.tabCss} >
+                <TouchableOpacity onPress={() => { this.activateTab('deposits') }} style={[(this.state.activeTab === 'deposits') ? styles.activeTab : styles.inactiveTab]} >
                   <Text style={styles.centerAlign} >Deposits</Text>
                 </TouchableOpacity>
               </View>
-              <View style={this.getStyle('loans')}>
-                <TouchableOpacity onPress={() => { this.activateTab('loans') }}>
+              <View style={styles.tabCss}>
+                <TouchableOpacity onPress={() => { this.activateTab('loans') }} style={[(this.state.activeTab === 'loans') ? styles.activeTab : styles.inactiveTab]}>
                   <Text style={styles.centerAlign} >Loans</Text>
                 </TouchableOpacity>
               </View>
@@ -142,7 +144,8 @@ export default class Home extends Component {
 let styles = StyleSheet.create({
   centerAlign: {
     textAlign: 'center',
-    fontSize: 17
+    fontSize: 20,
+    color: 'black'
   },
   line: {
     width: '100%',
@@ -151,15 +154,24 @@ let styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10
   },
-  tab: {
-    flex: 1, height: 50, justifyContent: 'center', alignContent: 'center', backgroundColor: 'white'
-  }
-  , activeTab: {
-    flex: 1, height: 50, justifyContent: 'center', alignContent: 'center', backgroundColor: 'white'
+  tabCss: {
+    flex: 1, height: 50, justifyContent: 'center', alignContent: 'center'
   },
+  activeTab: {
+    backgroundColor: '#e5e5e5',
+    height: 60,
+    alignContent: 'center',
+    justifyContent: 'center'
+  },
+  inactiveTab: {
+    backgroundColor: 'white',
+    height: 60,
+    alignContent: 'center',
+    justifyContent: 'center'
+  },
+
   tabView: {
     flex: 1,
-
   },
   border: {
     position: 'absolute',

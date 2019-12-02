@@ -11,7 +11,7 @@ import { Actions } from 'react-native-router-flux';
 // Our custom files and classes import
 import SideMenuSecondLevel from './SideMenuSecondLevel';
 import Text from './Text';
-import BgImg from '../assets/bg.jpg';
+import BgImg from '../assets/jjit.jpg';
 
 export default class SideMenu extends Component {
   constructor(props) {
@@ -157,6 +157,7 @@ export default class SideMenu extends Component {
           <Body style={{ marginLeft: -15 }}>
             <Text style={{ fontSize: 16 }}>{item.title}</Text>
           </Body>
+
         </ListItem>
       );
     });
@@ -233,84 +234,7 @@ const styles = {
   }
 };
 
-var menuItems = [
-  /*{
-    id: 1,
-    title: 'MEN',
-    subMenu: [
-      {
-        id: 5,
-        title: 'NEW IN'
-      },
-      {
-        id: 6,
-        title: 'JACKETS'
-      },
-      {
-        id: 7,
-        title: 'BLAZERS'
-      },
-      {
-        id: 8,
-        title: 'TROUSERS'
-      },
-      {
-        id: 9,
-        title: 'JEANS'
-      },
-      {
-        id: 10,
-        title: 'SHORTS'
-      },
-      {
-        id: 11,
-        title: 'SHOES'
-      }
-    ]
-  }
-  {
-    id: 2,
-    title: 'WOMEN',
-    subMenu: [
-      {
-        id: 12,
-        title: 'NEW IN'
-      },
-      {
-        id: 13,
-        title: 'JACKETS'
-      },
-      {
-        id: 14,
-        title: 'BLAZERS'
-      },
-      {
-        id: 15,
-        title: 'TROUSERS'
-      },
-      {
-        id: 16,
-        title: 'JEANS'
-      },
-      {
-        id: 17,
-        title: 'SHORTS'
-      },
-      {
-        id: 18,
-        title: 'SHOES'
-      }
-    ]
-  }
-  {
-    id: 3,
-    title: 'KIDS'
-  },
-  {
-    id: 4,
-    title: 'ACCESORIES'
-  }*/
-];
+var menuItems = [];
 
 //const menusSecondaryItems = [];
 
