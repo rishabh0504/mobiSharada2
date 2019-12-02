@@ -5,7 +5,7 @@
 // React native and others libraries imports
 import React, { Component } from 'react';
 import { Image, Dimensions, TouchableOpacity } from 'react-native';
-import { View  } from 'native-base';
+import { View } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
 // Our custom files and classes import
@@ -13,14 +13,14 @@ import Text from './Text';
 
 export default class CategoryBlock extends Component {
   render() {
-    return(
-      <View style={{flex:1}}>
+    return (
+      <View style={{ flex: 1 }}>
         <TouchableOpacity
           onPress={this._onPress.bind(this)}
           activeOpacity={0.9}
         >
           <View>
-            <Image style={styles.image} source={{uri: this.props.image}} />
+            <Image style={styles.image} source={{ uri: this.props.image }} />
             <View style={styles.overlay} />
             <View style={styles.border} />
             <View style={styles.text}>
@@ -34,7 +34,7 @@ export default class CategoryBlock extends Component {
   }
 
   _onPress() {
-    Actions.category({id: this.props.id, title: this.props.title});
+    Actions.category({ id: this.props.id, title: this.props.title });
   }
 }
 

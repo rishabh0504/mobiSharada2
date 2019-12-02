@@ -31,7 +31,7 @@ export default class Main extends Component {
   };
 
   render() {
-    return(
+    return (
       <Root>
         <Router>
           <Scene key="root">

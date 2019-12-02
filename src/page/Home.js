@@ -4,7 +4,7 @@
 
 // React native and others libraries imports
 import React, { Component } from 'react';
-import { Image } from 'react-native';
+import { Image, StyleSheet, Alert, TouchableOpacity } from 'react-native';
 import { Container, Content, View, Button, Left, Right, Icon, Card, CardItem, cardBody } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
@@ -17,6 +17,17 @@ import CategoryBlock from '../component/CategoryBlock';
 
 
 export default class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeTab: 'accounts'
+    }
+  }
+  activateTab = (tab) => {
+    this.setState({ activeTab: tab }, () => {
+      Alert.alert(tab)
+    })
+  }
   render() {
     var left = (
       <Left style={{ flex: 1 }}>
@@ -27,20 +38,52 @@ export default class Home extends Component {
     );
     var right = (
       <Right style={{ flex: 1 }}>
-        {/*<Button onPress={() => Actions.search()} transparent>
-          <Icon name='ios-search' />
-    </Button>*/}
         <Button onPress={() => Actions.cart()} transparent>
           <Icon name='ios-power' />
         </Button>
       </Right>
     );
+    let activeTab = null;
+    if (this.state.activeTab == 'accounts') {
+      activeTab = <View style={styles.tabView}>
+        <Text style={styles.centerAlign}>Accounts</Text>
+      </View>
+    } else if (this.state.activeTab == 'deposits') {
+      activeTab = <View style={styles.tabView} >
+        <Text style={styles.centerAlign}>Deposits</Text>
+      </View>
+    } else if (this.state.activeTab == 'loans') {
+      activeTab = <View style={styles.tabView} >
+        <Text style={styles.centerAlign}>Loans</Text>
+      </View>
+    }
+
     return (
       <SideMenuDrawer ref={(ref) => this._sideMenuDrawer = ref}>
         <Container>
           <Navbar left={left} right={right} title="mobiSharada" />
           <Content>
-            {this.renderCategories()}
+            <View style={{ flex: 1, flexDirection: 'row', marginTop: 10 }}>
+              <View style={styles.tab}>
+                <TouchableOpacity onPress={() => { this.activateTab('accounts') }}>
+                  <Text style={styles.centerAlign} >Accounts</Text>
+                </TouchableOpacity>
+              </View>
+              <View style={styles.tab} >
+                <TouchableOpacity onPress={() => { this.activateTab('deposits') }}>
+                  <Text style={styles.centerAlign} >Deposits</Text>
+                </TouchableOpacity>
+              </View>
+              <View style={styles.tab}>
+                <TouchableOpacity onPress={() => { this.activateTab('loans') }}>
+                  <Text style={styles.centerAlign} >Loans</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+            <View style={styles.line} />
+            <View style={{ flex: 1, flexDirection: 'row', marginTop: 10 }}>
+              {activeTab}
+            </View>
           </Content>
         </Container>
       </SideMenuDrawer>
@@ -81,3 +124,25 @@ var categories = [
     image: 'http://res.cloudinary.com/atf19/image/upload/c_scale,w_467/v1500284346/pexels-photo-293229_qxnjtd.jpg'
   }
 ];
+
+
+let styles = StyleSheet.create({
+  centerAlign: {
+    textAlign: 'center',
+    fontSize: 17,
+    borderBottomColor: 'red',
+  },
+  line: {
+    width: '100%',
+    height: 1,
+    backgroundColor: 'rgba(189, 195, 199, 0.6)',
+    marginTop: 10,
+    marginBottom: 10
+  },
+  tab: {
+    flex: 1, height: 50, justifyContent: 'center', alignContent: 'center', backgroundColor: '#e5e5e5'
+  },
+  tabView: {
+    flex: 1, height: 50
+  }
+})

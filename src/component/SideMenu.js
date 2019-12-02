@@ -52,19 +52,7 @@ export default class SideMenu extends Component {
           </View>
           <View style={{ paddingRight: 15 }}>
             <List>
-              <ListItem
-                icon
-                key={0}
-                button={true}
-                onPress={() => Actions.home()}
-              >
-                <Body>
-                  <Text>Home</Text>
-                </Body>
-                {/*<Right>
-                  <Icon name="ios-arrow-forward" />
-                </Right>*/}
-              </ListItem>
+
               {this.renderMenuItems()}
             </List>
           </View>
@@ -75,16 +63,10 @@ export default class SideMenu extends Component {
             </List>
           </View>
           <View style={styles.line} />
+
+          <View style={styles.line} />
           <View style={{ paddingRight: 15, paddingLeft: 15 }}>
-            <Text>{`\n`}</Text>
-            <Text style={{ marginBottom: 7 }}>Powered By @JJIT</Text>
-            {/*<Grid>
-              <Col style={{ alignItems: 'center' }}><Icon style={{ fontSize: 18 }} name='logo-facebook' onPress={() => Linking.openURL('http://www.facebook.com/').catch(err => console.error('An error occurred', err))} /></Col>
-              <Col style={{ alignItems: 'center' }}><Icon style={{ fontSize: 18 }} name='logo-instagram' onPress={() => Linking.openURL('http://www.instagram.com/').catch(err => console.error('An error occurred', err))} /></Col>
-              <Col style={{ alignItems: 'center' }}><Icon style={{ fontSize: 18 }} name='logo-twitter' onPress={() => Linking.openURL('http://www.twitter.com/').catch(err => console.error('An error occurred', err))} /></Col>
-              <Col style={{ alignItems: 'center' }}><Icon style={{ fontSize: 18 }} name='logo-youtube' onPress={() => Linking.openURL('http://www.youtube.com/').catch(err => console.error('An error occurred', err))} /></Col>
-              <Col style={{ alignItems: 'center' }}><Icon style={{ fontSize: 18 }} name='logo-snapchat' onPress={() => Linking.openURL('http://www.snapchat.com/').catch(err => console.error('An error occurred', err))} /></Col>
-            </Grid>*/}
+            <Text style={{ textAlign: 'center' }}>Powered By @JJIT</Text>
           </View>
         </View>
       );
@@ -110,9 +92,7 @@ export default class SideMenu extends Component {
           <Body>
             <Text>{item.title}</Text>
           </Body>
-          {/*<Right>
-            <Icon name="ios-arrow-forward" />
-          </Right>*/}
+
         </ListItem>
       );
     });
@@ -321,7 +301,7 @@ var menuItems = [
         title: 'SHOES'
       }
     ]
-  }*/
+  }
   {
     id: 3,
     title: 'KIDS'
@@ -329,50 +309,64 @@ var menuItems = [
   {
     id: 4,
     title: 'ACCESORIES'
-  }
+  }*/
 ];
 
-const menusSecondaryItems = [];
-/*
+//const menusSecondaryItems = [];
+
 const menusSecondaryItems = [
   {
     id: 190,
-    title: 'Login',
+    title: 'My Profile',
     icon: 'ios-person',
-    key: 'login'
+    key: 'home'
   },
   {
     id: 519,
-    title: 'Signup',
+    title: 'Accounts',
     icon: 'ios-person-add',
     key: 'signup'
   },
   {
     id: 19,
-    title: 'Wish List',
+    title: 'Fund Transfer',
     icon: 'heart',
     key: 'wishlist'
   },
   {
     id: 20,
     key: 'map',
-    title: 'Store Finder',
+    title: 'Request',
     icon: 'ios-pin',
     key: 'map'
   },
   {
     id: 21,
     key: 'contact',
-    title: 'Contact Us',
+    title: 'Features',
     icon: 'md-phone-portrait',
     key: 'contact'
   },
   {
     id: 23,
     key: 'newsletter',
-    title: 'Newsletter',
+    title: 'Deposite Calculator',
+    icon: 'md-paper',
+    key: 'newsletter'
+  },
+  {
+    id: 24,
+    key: 'contact',
+    title: 'EMI Calculator',
+    icon: 'md-phone-portrait',
+    key: 'contact'
+  },
+  {
+    id: 25,
+    key: 'newsletter',
+    title: 'Change mPin',
     icon: 'md-paper',
     key: 'newsletter'
   }
 ];
-*/
+
