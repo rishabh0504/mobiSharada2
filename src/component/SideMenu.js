@@ -3,14 +3,15 @@
 **/
 
 // React native and others libraries imports
-import React, { Component } from 'react';
-import { ScrollView, LayoutAnimation, UIManager, Linking } from 'react-native';
-import { View, List, ListItem, Body, Left, Right, Icon, Item, Input, Button, Grid, Col } from 'native-base';
+import React, { Component, StyleSheet } from 'react';
+import { ScrollView, LayoutAnimation, UIManager, Linking, Image, Dimensions } from 'react-native';
+import { View, List, ListItem, Body, Left, Right, Icon, Item, Input, Button, Grid, Col, Container, Header, Content, Card, CardItem, CardSwiper, Thumbnail } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
 // Our custom files and classes import
 import SideMenuSecondLevel from './SideMenuSecondLevel';
 import Text from './Text';
+import BgImg from '../assets/bg.jpg';
 
 export default class SideMenu extends Component {
   constructor(props) {
@@ -38,15 +39,16 @@ export default class SideMenu extends Component {
     if (!this.state.subMenu) {
       return (
         <View>
-          <View style={{ paddingLeft: 15, paddingRight: 15 }}>
-            <Item error={this.state.searchError}>
-              <Input
-                placeholder='Search...'
-                onChangeText={(text) => this.setState({ search: text, searchError: false })}
-                onSubmitEditing={() => this.search()}
-              />
-              <Icon active name='ios-search-outline' onPress={() => this.search()} />
-            </Item>
+          <View>
+            <Image style={styles.image} source={BgImg} />
+            <View style={styles.overlay} />
+            <View style={styles.border} >
+              <Text style={styles.title}>jMobile</Text>
+              <Text>{`\n`}</Text>
+              <Text style={styles.subtitle}>Jalagon Janata Infotech Pvt. Ltd. </Text>
+              <Text>{`\n`}</Text>
+              <Text style={styles.subtitleBottom}>www.jjit.net</Text>
+            </View>
           </View>
           <View style={{ paddingRight: 15 }}>
             <List>
@@ -74,6 +76,7 @@ export default class SideMenu extends Component {
           </View>
           <View style={styles.line} />
           <View style={{ paddingRight: 15, paddingLeft: 15 }}>
+            <Text>{`\n`}</Text>
             <Text style={{ marginBottom: 7 }}>Powered By @JJIT</Text>
             {/*<Grid>
               <Col style={{ alignItems: 'center' }}><Icon style={{ fontSize: 18 }} name='logo-facebook' onPress={() => Linking.openURL('http://www.facebook.com/').catch(err => console.error('An error occurred', err))} /></Col>
@@ -187,12 +190,66 @@ const styles = {
     flex: 1,
     backgroundColor: '#fdfdfd'
   },
+  text: {
+    width: 300,
+    height: 200,
+
+  },
+  subtitle: {
+    color: 'white',
+    fontSize: 17
+  },
+  subtitleBottom: {
+    color: 'white',
+    fontSize: 13,
+    textAlign: 'right',
+    bottom: 0,
+    alignSelf: 'flex-end'
+  },
+  image: {
+    height: 200,
+    width: null,
+    flex: 1
+  },
+  border: {
+    position: 'absolute',
+    top: 10,
+    left: 10,
+    right: 10,
+    bottom: 10,
+    borderWidth: 1,
+    borderColor: 'rgba(253, 253, 253, 0.2)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  overlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(30, 42, 54, 0.4)'
+  },
+  title: {
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    alignSelf: 'flex-start',
+    color: 'white',
+    fontSize: 35,
+    paddingLeft: 10
+  },
   line: {
     width: '100%',
     height: 1,
     backgroundColor: 'rgba(189, 195, 199, 0.6)',
     marginTop: 10,
     marginBottom: 10
+  },
+  backgroundImage: {
+    flex: 1,
+    width: null,
+    height: null,
+    resizeMode: 'cover'
   }
 };
 
