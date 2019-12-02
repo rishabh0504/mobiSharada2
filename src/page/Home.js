@@ -5,9 +5,9 @@
 // React native and others libraries imports
 import React, { Component } from 'react';
 import { Image, StyleSheet, Alert, TouchableOpacity } from 'react-native';
-import { Container, Content, View, Button, Left, Right, Icon, Card, CardItem, cardBody } from 'native-base';
+import { Container, Content, View, Button, Left, Right, Thumbnail, Icon, Card, CardItem, Body, List, ListItem } from 'native-base';
 import { Actions } from 'react-native-router-flux';
-
+import BgImg from '../assets/bg.jpg';
 // Our custom files and classes import
 import Text from '../component/Text';
 import Navbar from '../component/Navbar';
@@ -25,9 +25,19 @@ export default class Home extends Component {
   }
   activateTab = (tab) => {
     this.setState({ activeTab: tab }, () => {
-      Alert.alert(tab)
+      Alert.alert(this.state.activeTab)
     })
   }
+
+  getStyle = (item) => {
+    if (item === this.state.activeTab) {
+      return styles.activeTab
+    } else {
+      return styles.tab
+    }
+  }
+
+
   render() {
     var left = (
       <Left style={{ flex: 1 }}>
@@ -43,10 +53,37 @@ export default class Home extends Component {
         </Button>
       </Right>
     );
+    var accountData = [];
+    for (let index = 0; index < 10; index++) {
+      accountData.push(
+        <ListItem thumbnail>
+          <Left>
+            <Thumbnail square source={require('../assets/bg.jpg')} />
+          </Left>
+          <Body>
+            <Text>SB- Saving A/c </Text>
+            <Text note numberOfLines={1}>20194283779</Text>
+          </Body>
+          <Right>
+            <Button transparent>
+              <Icon name='ios-arrow-round-forward' />
+            </Button>
+          </Right>
+        </ListItem>
+      )
+    }
     let activeTab = null;
     if (this.state.activeTab == 'accounts') {
       activeTab = <View style={styles.tabView}>
-        <Text style={styles.centerAlign}>Accounts</Text>
+        <Text style={{ textAlign: 'center', fontSize: 18 }}>Clear Balance [Primary A/c]</Text>
+        <Text style={{ textAlign: 'center', fontSize: 18 }}>Rs. 1955.05 Cr.</Text>
+        <Container>
+          <Content>
+            <List>
+              {accountData}
+            </List>
+          </Content>
+        </Container>
       </View>
     } else if (this.state.activeTab == 'deposits') {
       activeTab = <View style={styles.tabView} >
@@ -58,23 +95,24 @@ export default class Home extends Component {
       </View>
     }
 
+
     return (
       <SideMenuDrawer ref={(ref) => this._sideMenuDrawer = ref}>
         <Container>
           <Navbar left={left} right={right} title="mobiSharada" />
           <Content>
             <View style={{ flex: 1, flexDirection: 'row', marginTop: 10 }}>
-              <View style={styles.tab}>
+              <View style={this.getStyle('accounts')}>
                 <TouchableOpacity onPress={() => { this.activateTab('accounts') }}>
                   <Text style={styles.centerAlign} >Accounts</Text>
                 </TouchableOpacity>
               </View>
-              <View style={styles.tab} >
+              <View style={this.getStyle('deposites')} >
                 <TouchableOpacity onPress={() => { this.activateTab('deposits') }}>
                   <Text style={styles.centerAlign} >Deposits</Text>
                 </TouchableOpacity>
               </View>
-              <View style={styles.tab}>
+              <View style={this.getStyle('loans')}>
                 <TouchableOpacity onPress={() => { this.activateTab('loans') }}>
                   <Text style={styles.centerAlign} >Loans</Text>
                 </TouchableOpacity>
@@ -99,38 +137,12 @@ export default class Home extends Component {
     }
     return cat;
   }
-
 }
-
-var categories = [
-  {
-    id: 1,
-    title: 'MEN',
-    image: 'http://res.cloudinary.com/atf19/image/upload/c_scale,w_489/v1500284127/pexels-photo-497848_yenhuf.jpg'
-  },
-  {
-    id: 2,
-    title: 'WOMEN',
-    image: 'http://res.cloudinary.com/atf19/image/upload/c_scale,w_460/v1500284237/pexels-photo-324030_wakzz4.jpg'
-  },
-  {
-    id: 3,
-    title: 'KIDS',
-    image: 'http://res.cloudinary.com/atf19/image/upload/c_scale,w_445/v1500284286/child-childrens-baby-children-s_shcevh.jpg'
-  },
-  {
-    id: 4,
-    title: 'ACCESORIES',
-    image: 'http://res.cloudinary.com/atf19/image/upload/c_scale,w_467/v1500284346/pexels-photo-293229_qxnjtd.jpg'
-  }
-];
-
 
 let styles = StyleSheet.create({
   centerAlign: {
     textAlign: 'center',
-    fontSize: 17,
-    borderBottomColor: 'red',
+    fontSize: 17
   },
   line: {
     width: '100%',
@@ -140,9 +152,52 @@ let styles = StyleSheet.create({
     marginBottom: 10
   },
   tab: {
-    flex: 1, height: 50, justifyContent: 'center', alignContent: 'center', backgroundColor: '#e5e5e5'
+    flex: 1, height: 50, justifyContent: 'center', alignContent: 'center', backgroundColor: 'white'
+  }
+  , activeTab: {
+    flex: 1, height: 50, justifyContent: 'center', alignContent: 'center', backgroundColor: 'white'
   },
   tabView: {
-    flex: 1, height: 50
+    flex: 1,
+
+  },
+  border: {
+    position: 'absolute',
+    top: 10,
+    left: 10,
+    right: 10,
+    bottom: 10,
+    borderWidth: 1,
+    borderColor: 'rgba(253, 253, 253, 0.2)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  overlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(30, 42, 54, 0.4)'
+  },
+  title: {
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    alignSelf: 'flex-start',
+    fontSize: 35,
+    paddingLeft: 10
+  },
+  line: {
+    width: '100%',
+    height: 1,
+    backgroundColor: 'rgba(189, 195, 199, 0.6)',
+    marginTop: 10,
+    marginBottom: 10
+  },
+  backgroundImage: {
+    flex: 1,
+    width: null,
+    height: null,
+    resizeMode: 'cover'
   }
 })
