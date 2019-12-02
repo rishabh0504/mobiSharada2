@@ -13,6 +13,7 @@ import SideMenuSecondLevel from './SideMenuSecondLevel';
 import Text from './Text';
 import BgImg from '../assets/jjit.jpg';
 
+
 export default class SideMenu extends Component {
   constructor(props) {
     super(props);
@@ -38,8 +39,8 @@ export default class SideMenu extends Component {
   renderMenu() {
     if (!this.state.subMenu) {
       return (
-        <View>
-          <View>
+        <View style={{ borderRightColor: 'gray', borderRightWidth: 1, shadowOffset: { width: 0, height: 2 } }}>
+          <View >
             <Image style={styles.image} source={BgImg} />
             <View style={styles.overlay} />
             <View style={styles.border} >
@@ -62,8 +63,6 @@ export default class SideMenu extends Component {
               {this.renderSecondaryList()}
             </List>
           </View>
-          <View style={styles.line} />
-
           <View style={styles.line} />
           <View style={{ paddingRight: 15, paddingLeft: 15 }}>
             <Text style={{ textAlign: 'center' }}>Powered By @JJIT</Text>
@@ -91,6 +90,7 @@ export default class SideMenu extends Component {
         >
           <Body>
             <Text>{item.title}</Text>
+
           </Body>
 
         </ListItem>

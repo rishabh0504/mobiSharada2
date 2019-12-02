@@ -25,17 +25,10 @@ export default class Home extends Component {
   }
   activateTab = (tab) => {
     this.setState({ activeTab: tab }, () => {
-      Alert.alert(this.state.activeTab)
+
     })
   }
 
-  getStyle = (item) => {
-    if (item === this.state.activeTab) {
-      return StyleSheet.flatten([styles.activeTab, styles.activeColor])
-    } else {
-      return StyleSheet.flatten([styles.activeTab, styles.inactiveColor])
-    }
-  }
 
 
   render() {
@@ -56,7 +49,7 @@ export default class Home extends Component {
     var accountData = [];
     for (let index = 0; index < 10; index++) {
       accountData.push(
-        <ListItem thumbnail>
+        <ListItem thumbnail key={index}>
           <Left>
             <Thumbnail square source={require('../assets/bg.jpg')} />
           </Left>
@@ -75,10 +68,8 @@ export default class Home extends Component {
     let activeTab = null;
     if (this.state.activeTab == 'accounts') {
       activeTab = <View style={styles.tabView}>
-
-        <Text style={{ textAlign: 'center', fontSize: 18, color: 'black' }}>Clear Balance [Primary A/c]</Text>
-        <Text style={{ textAlign: 'center', fontSize: 16, color: 'black' }}>Rs. 1955.05 Cr.</Text>
-        <Text style={{ alignSelf: 'flex-end', fontSize: 14, color: 'red', marginRight: 10, marginBottom: 10 }}>Last Login : 02-Dec-2019 09:08</Text>
+        <Text style={{ textAlign: 'center', fontSize: 15 }}>Clear Balance [Primary A/c]</Text>
+        <Text style={{ textAlign: 'center', fontSize: 14 }}>Rs. 1955.05 Cr.</Text>
         <Container>
           <Content>
             <List>
@@ -88,12 +79,28 @@ export default class Home extends Component {
         </Container>
       </View>
     } else if (this.state.activeTab == 'deposits') {
-      activeTab = <View style={styles.tabView} >
-        <Text style={styles.centerAlign}>{this.state.activeTab}</Text>
+      activeTab = <View style={styles.tabView}>
+        <Text style={{ textAlign: 'center', fontSize: 15 }}>Clear Balance [Primary A/c]</Text>
+        <Text style={{ textAlign: 'center', fontSize: 14 }}>Rs. 1955.05 Cr.</Text>
+        <Container>
+          <Content>
+            <List>
+              {accountData}
+            </List>
+          </Content>
+        </Container>
       </View>
     } else if (this.state.activeTab == 'loans') {
-      activeTab = <View style={styles.tabView} >
-        <Text style={styles.centerAlign}>{this.state.activeTab}</Text>
+      activeTab = <View style={styles.tabView}>
+        <Text style={{ textAlign: 'center', fontSize: 15 }}>Clear Balance [Primary A/c]</Text>
+        <Text style={{ textAlign: 'center', fontSize: 14 }}>Rs. 1955.05 Cr.</Text>
+        <Container>
+          <Content>
+            <List>
+              {accountData}
+            </List>
+          </Content>
+        </Container>
       </View>
     }
 
@@ -102,6 +109,8 @@ export default class Home extends Component {
       <SideMenuDrawer ref={(ref) => this._sideMenuDrawer = ref}>
         <Container>
           <Navbar left={left} right={right} title="mobiSharada" />
+          <Text style={styles.companyName}>Shree Sharada Sah Bank Pvt. Ltd.</Text>
+          <Text style={{ alignSelf: 'flex-end', fontSize: 14, color: 'red', marginRight: 10, marginBottom: 10 }}>Last Login : 02-Dec-2019 09:08</Text>
           <Content>
             <View style={{ flex: 1, flexDirection: 'row', marginTop: 10 }}>
               <View style={styles.tabCss}>
@@ -120,7 +129,7 @@ export default class Home extends Component {
                 </TouchableOpacity>
               </View>
             </View>
-            <View style={styles.line} />
+
             <View style={{ flex: 1, flexDirection: 'row', marginTop: 10 }}>
               {activeTab}
             </View>
@@ -144,8 +153,14 @@ export default class Home extends Component {
 let styles = StyleSheet.create({
   centerAlign: {
     textAlign: 'center',
-    fontSize: 20,
+    fontSize: 15,
     color: 'black'
+  },
+  companyName: {
+    textAlign: 'center',
+    fontSize: 20,
+    marginBottom: 10,
+    marginTop: 10
   },
   line: {
     width: '100%',
@@ -158,16 +173,21 @@ let styles = StyleSheet.create({
     flex: 1, height: 50, justifyContent: 'center', alignContent: 'center'
   },
   activeTab: {
-    backgroundColor: '#e5e5e5',
-    height: 60,
+    height: 50,
     alignContent: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: '#e5e5e5',
+    borderBottomWidth: 1,
+    borderBottomColor: 'white'
   },
   inactiveTab: {
-    backgroundColor: 'white',
-    height: 60,
+
+    height: 50,
     alignContent: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: '#e5e5e5'
   },
 
   tabView: {

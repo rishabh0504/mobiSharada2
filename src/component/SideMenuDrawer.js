@@ -14,7 +14,7 @@ import SideMenu from './SideMenu';
 
 export default class SideMenuDrawer extends Component {
   render() {
-    return(
+    return (
       <Drawer
         ref={(ref) => this._drawer = ref}
         content={<SideMenu />}
@@ -22,8 +22,9 @@ export default class SideMenuDrawer extends Component {
         type="overlay"
         openDrawerOffset={0.3}
         onCloseStart={() => Keyboard.dismiss()}
-        >
-          {this.props.children}
+      >
+        {this.props.children}
+
       </Drawer>
     );
   }
