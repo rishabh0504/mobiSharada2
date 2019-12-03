@@ -42,7 +42,8 @@ export default class Home extends Component {
   activateTab = tab => {
     this.setState(
       {
-        activeTab: tab
+		activeTab: tab,
+		open:false
       },
       () => {}
     );
@@ -69,7 +70,42 @@ export default class Home extends Component {
   closeModal = () =>
     this.setState({
       open: false
-    });
+	});
+	
+  getLoansList = () =>{
+	let loansData = [];
+	for (let index = 0; index < 20; index++) {
+		loansData.push(
+		  <ListItem
+			thumbnail
+			key={index}
+			style={{ backgroundColor: '#fbfff7', paddingBottom: 2, width: 375 }}>
+
+			
+			<Body >
+			<TouchableOpacity  onPress={this.openModal}>
+				<Text>TL- Term Loan A/c </Text>
+				<Text note numberOfLines={1}>
+				  20194283779
+				</Text>
+			 </TouchableOpacity>
+			</Body>
+			<Right>
+            <TouchableOpacity onPress={this.openModal}>
+              <Button transparent >
+			  <Text>Rs. 2019304.00 Dr</Text>
+				<Icon name="ios-arrow-round-forward" />
+				
+              </Button>
+            </TouchableOpacity>
+          </Right>
+			
+
+		  </ListItem>
+		);
+	  }
+	  return loansData;
+  }
   getDepositsList = () => {
     let depositsData = [];
     for (let index = 0; index < 20; index++) {
@@ -143,7 +179,9 @@ export default class Home extends Component {
       </Right>
     );
     let accountData = this.getAccountsList();
-    let depositsData = this.getDepositsList();
+	let depositsData = this.getDepositsList();
+	let loansData = this.getLoansList();
+
     let activeTab = null;
     if (this.state.activeTab == 'accounts') {
       activeTab = (
@@ -162,8 +200,7 @@ export default class Home extends Component {
     } else if (this.state.activeTab == 'loans') {
       activeTab = (
         <View style={styles.tabView}>
-          <Text style={styles.textColorTitle}>Clear Balance [Primary A/c]</Text>
-          <Text style={styles.textColorTitle}>Rs. 1955.05 Cr.</Text>
+          <List style={{ marginBottom: 20 }}>{loansData}</List>		  
         </View>
       );
     }
@@ -288,8 +325,8 @@ export default class Home extends Component {
                   </CardItem>
                   <CardItem cardBody>
                     {/*<Image source={require('../assets/bg.jpg')} style={{ flex: 1}}/>*/}
-                    <View style={{ paddingLeft: 20, paddingRight: 20 }}>
-                      <Text style={{ textAlign: 'center', width: 300, fontSize: 20 }}>
+                    <View style={{width:330}}>
+                      <Text style={{ textAlign: 'center', width: 330, fontSize: 20 }}>
                         Contract Details
                       </Text>
                       <ListItem
@@ -356,7 +393,101 @@ export default class Home extends Component {
               </View>
             </Modal>
           )}
-        </Container>
+         {this.state.activeTab === 'loans' && (
+            <Modal
+              offset={this.state.offset}
+              open={this.state.open}
+              modalDidOpen={this.modalDidOpen}
+              modalDidClose={this.modalDidClose}>
+              <View>
+                <Card>
+                  <CardItem>
+                    <Left>
+                      <Thumbnail
+                        square
+                        source={require('../assets/jjit.jpg')}
+                        style={{ height: 50, width: 50 }}
+                      />
+                      <Body>
+                        <Text style={[...styles.textColor, { fontSize: 23 }]} note>
+                          jMobile
+                        </Text>
+                      </Body>
+                    </Left>
+                  </CardItem>
+                  <CardItem cardBody>
+                    {/*<Image source={require('../assets/bg.jpg')} style={{ flex: 1}}/>*/}
+                    <View style={{width:330}}>
+                      <Text style={{ textAlign: 'center', width: 330, fontSize: 20 }}>
+                        Contract Details
+                      </Text>
+                      <ListItem
+                        thumbnail
+                        key={0}
+                        style={{ backgroundColor: '#fbfff7', paddingBottom: 2 }}>
+                        <Body>
+                          <Text style={styles.textFormat}>Loan Type </Text>
+                          <Text note numberOfLines={1}>
+                            Secured Loans (Hyp)
+                          </Text>
+                        </Body>
+                        <Right>
+                          <Text style={styles.textFormat}>Loans Amount </Text>
+                          <Text note numberOfLines={1}>
+                            10074.00
+                          </Text>
+                        </Right>
+                      </ListItem>
+                      <ListItem
+                        thumbnail
+                        key={1}
+                        style={{ backgroundColor: '#fbfff7', paddingBottom: 2 }}>
+                        <Body>
+                          <Text style={styles.textFormat}>First Installment Date</Text>
+                          <Text note numberOfLines={1}>
+                            31-12-1019
+                          </Text>
+                        </Body>
+                        <Right>
+                          <Text style={styles.textFormat}>No Of Installments </Text>
+                          <Text note numberOfLines={1}>
+                            36 Months
+                          </Text>
+                        </Right>
+                      </ListItem>
+                      <ListItem
+                        thumbnail
+                        key={2}
+                        style={{ backgroundColor: '#fbfff7', paddingBottom: 2 }}>
+                        <Body>
+                          <Text style={styles.textFormat}>Installment Amount </Text>
+                          <Text note numberOfLines={1}>
+                            9350.00
+                          </Text>
+                        </Body>
+                        <Right>
+                          <Text style={styles.textFormat}>Due Date </Text>
+                          <Text note numberOfLines={1}>
+                            30-11-2019
+                          </Text>
+                        </Right>
+                      </ListItem>
+                    </View>
+                  </CardItem>
+                  <CardItem>
+                    <Right>
+                      <Button transparent onPress={this.closeModal}>
+                        <Text> OK</Text>
+                      </Button>
+                    </Right>
+                  </CardItem>
+                </Card>
+              </View>
+            </Modal>
+          )}
+		
+		
+		</Container>
       </SideMenuDrawer>
     );
   }
