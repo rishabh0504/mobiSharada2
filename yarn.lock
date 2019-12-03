@@ -4034,6 +4034,11 @@ react-native-router-flux@3.38.0:
     react-native-tabs "^1.0.9"
     react-static-container "1.0.1"
 
+react-native-simple-modal@^9.0.1:
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-simple-modal/-/react-native-simple-modal-9.0.1.tgz#a753e9493f4bfcd8b9bf7812faaa56336bf56bde"
+  integrity sha512-tAqIWFD2K1qZ71oQDEeyxC+3nwVEqwt/wnho7cbGzz1GB0HpxzC5qHbO5x39PUNgm3iX1DitUUQFhKYnxT3pTg==
+
 react-native-tabs@^1.0.9:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/react-native-tabs/-/react-native-tabs-1.0.9.tgz#75d3c35e8b5b6970869eab282372cb32e2a782cd"
