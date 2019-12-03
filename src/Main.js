@@ -24,6 +24,7 @@ import ImageGallery from './page/ImageGallery';
 import Login from './page/Login';
 import Signup from './page/Signup';
 import Checkout from './page/Checkout';
+import Profile from './page/Profile';
 
 export default class Main extends Component {
   componentWillMount = () => {
@@ -36,6 +37,8 @@ export default class Main extends Component {
         <Router>
           <Scene key="root">
             <Scene initial key="home" component={Home} hideNavBar />
+            <Scene key="profile" component={Profile} hideNavBar />
+            
             <Scene key="search" component={Search} modal hideNavBar />
             <Scene key="cart" component={Cart} modal hideNavBar />
             <Scene key="wishlist" component={WishList} modal hideNavBar />
@@ -47,6 +50,7 @@ export default class Main extends Component {
             <Scene key="imageGallery" component={ImageGallery} modal hideNavBar />
             <Scene key="login" component={Login} hideNavBar />
             <Scene key="signup" component={Signup} hideNavBar />
+
             <Scene key="checkout" component={Checkout} hideNavBar />
           </Scene>
         </Router>

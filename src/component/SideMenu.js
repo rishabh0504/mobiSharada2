@@ -248,7 +248,7 @@ const menusSecondaryItems = [
     id: 519,
     title: 'My Profile',
     icon: 'ios-person-add',
-    key: 'signup'
+    key: 'profile'
   },
   {
     id: 19,
