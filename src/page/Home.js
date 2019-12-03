@@ -7,6 +7,7 @@ import React, { Component } from 'react';
 import { Image, StyleSheet, Alert, TouchableOpacity } from 'react-native';
 import { Container, Content, View, Button, Left, Right, Thumbnail, Icon, Card, CardItem, Body, List, ListItem } from 'native-base';
 import { Actions } from 'react-native-router-flux';
+
 import BgImg from '../assets/bg.jpg';
 // Our custom files and classes import
 import Text from '../component/Text';
@@ -25,17 +26,10 @@ export default class Home extends Component {
   }
   activateTab = (tab) => {
     this.setState({ activeTab: tab }, () => {
-      Alert.alert(this.state.activeTab)
+
     })
   }
 
-  getStyle = (item) => {
-    if (item === this.state.activeTab) {
-      return styles.activeTab
-    } else {
-      return styles.tab
-    }
-  }
 
 
   render() {
@@ -54,15 +48,12 @@ export default class Home extends Component {
       </Right>
     );
     var accountData = [];
-    for (let index = 0; index < 10; index++) {
+    for (let index = 0; index < 20; index++) {
       accountData.push(
-        <ListItem thumbnail>
-          <Left>
-            <Thumbnail square source={require('../assets/bg.jpg')} />
-          </Left>
+        <ListItem thumbnail key={index} >
           <Body>
-            <Text>SB- Saving A/c </Text>
-            <Text note numberOfLines={1}>20194283779</Text>
+            <Text style={styles.textColor}>SB- Saving A/c </Text>
+            <Text style={styles.textColor} note numberOfLines={1} >20194283779</Text>
           </Body>
           <Right>
             <Button transparent>
@@ -75,8 +66,20 @@ export default class Home extends Component {
     let activeTab = null;
     if (this.state.activeTab == 'accounts') {
       activeTab = <View style={styles.tabView}>
-        <Text style={{ textAlign: 'center', fontSize: 18 }}>Clear Balance [Primary A/c]</Text>
-        <Text style={{ textAlign: 'center', fontSize: 18 }}>Rs. 1955.05 Cr.</Text>
+        <Text style={styles.textColorTitle}>Clear Balance [Primary A/c]</Text>
+        <Text style={styles.textColorTitle}>Rs. 1955.05 Cr.</Text>
+        <Container>
+          <Content>
+            <List >
+              {accountData}
+            </List>
+          </Content>
+        </Container>
+      </View>
+    } else if (this.state.activeTab == 'deposits') {
+      activeTab = <View style={styles.tabView}>
+        <Text style={styles.textColorTitle}>Clear Balance [Primary A/c]</Text>
+        <Text style={styles.textColorTitle}>Rs. 1955.05 Cr.</Text>
         <Container>
           <Content>
             <List>
@@ -85,13 +88,17 @@ export default class Home extends Component {
           </Content>
         </Container>
       </View>
-    } else if (this.state.activeTab == 'deposits') {
-      activeTab = <View style={styles.tabView} >
-        <Text style={styles.centerAlign}>Deposits</Text>
-      </View>
     } else if (this.state.activeTab == 'loans') {
-      activeTab = <View style={styles.tabView} >
-        <Text style={styles.centerAlign}>Loans</Text>
+      activeTab = <View style={styles.tabView}>
+        <Text style={styles.textColorTitle}>Clear Balance [Primary A/c]</Text>
+        <Text style={styles.textColorTitle}>Rs. 1955.05 Cr.</Text>
+        <Container>
+          <Content>
+            <List>
+              {accountData}
+            </List>
+          </Content>
+        </Container>
       </View>
     }
 
@@ -100,25 +107,27 @@ export default class Home extends Component {
       <SideMenuDrawer ref={(ref) => this._sideMenuDrawer = ref}>
         <Container>
           <Navbar left={left} right={right} title="mobiSharada" />
+          <Text style={styles.companyName}>Shree Sharada Sah Bank Pvt. Ltd.</Text>
+          <Text style={{ alignSelf: 'flex-end', fontSize: 14, color: 'red', marginRight: 10, marginBottom: 10 }}>Last Login : 02-Dec-2019 09:08</Text>
           <Content>
             <View style={{ flex: 1, flexDirection: 'row', marginTop: 10 }}>
-              <View style={this.getStyle('accounts')}>
-                <TouchableOpacity onPress={() => { this.activateTab('accounts') }}>
+              <View style={styles.tabCss}>
+                <TouchableOpacity onPress={() => { this.activateTab('accounts') }} style={[(this.state.activeTab === 'accounts') ? styles.activeTab : styles.inactiveTab]}>
                   <Text style={styles.centerAlign} >Accounts</Text>
                 </TouchableOpacity>
               </View>
-              <View style={this.getStyle('deposites')} >
-                <TouchableOpacity onPress={() => { this.activateTab('deposits') }}>
+              <View style={styles.tabCss} >
+                <TouchableOpacity onPress={() => { this.activateTab('deposits') }} style={[(this.state.activeTab === 'deposits') ? styles.activeTab : styles.inactiveTab]} >
                   <Text style={styles.centerAlign} >Deposits</Text>
                 </TouchableOpacity>
               </View>
-              <View style={this.getStyle('loans')}>
-                <TouchableOpacity onPress={() => { this.activateTab('loans') }}>
+              <View style={styles.tabCss}>
+                <TouchableOpacity onPress={() => { this.activateTab('loans') }} style={[(this.state.activeTab === 'loans') ? styles.activeTab : styles.inactiveTab]}>
                   <Text style={styles.centerAlign} >Loans</Text>
                 </TouchableOpacity>
               </View>
             </View>
-            <View style={styles.line} />
+
             <View style={{ flex: 1, flexDirection: 'row', marginTop: 10 }}>
               {activeTab}
             </View>
@@ -140,9 +149,28 @@ export default class Home extends Component {
 }
 
 let styles = StyleSheet.create({
+  textColor: {
+    color: '#004f86',
+    fontWeight: '200',
+    fontSize: 15
+  },
+  textColorTitle: {
+    color: '#004080',
+    fontWeight: '200',
+    fontSize: 17,
+    textAlign: 'center'
+  },
   centerAlign: {
     textAlign: 'center',
-    fontSize: 17
+    fontSize: 15,
+    color: '#004080'
+  },
+  companyName: {
+    textAlign: 'center',
+    fontSize: 20,
+    marginBottom: 10,
+    marginTop: 10,
+    color: '#004080'
   },
   line: {
     width: '100%',
@@ -151,15 +179,30 @@ let styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10
   },
-  tab: {
-    flex: 1, height: 50, justifyContent: 'center', alignContent: 'center', backgroundColor: 'white'
-  }
-  , activeTab: {
-    flex: 1, height: 50, justifyContent: 'center', alignContent: 'center', backgroundColor: 'white'
+  tabCss: {
+    flex: 1, height: 50, justifyContent: 'center', alignContent: 'center'
   },
+  activeTab: {
+    height: 50,
+    alignContent: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: '#e5e5e5',
+    borderBottomWidth: 1,
+    borderBottomColor: 'white'
+  },
+  inactiveTab: {
+
+    height: 50,
+    alignContent: 'center',
+    justifyContent: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: '#e5e5e5'
+  },
+
   tabView: {
     flex: 1,
-
+    height: 450
   },
   border: {
     position: 'absolute',
