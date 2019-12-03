@@ -3,4 +3,4 @@ import { AppRegistry } from "react-native";
 
 import Main from "./src/Main";
 
-AppRegistry.registerComponent("reactnavigationdrawer", () => Main);
+AppRegistry.registerComponent("mobiSharada", () => Main);
