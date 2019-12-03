@@ -64,8 +64,8 @@ export default class SideMenu extends Component {
             </List>
           </View>
           <View style={styles.line} />
-          <View style={{ paddingRight: 15, paddingLeft: 15 }}>
-            <Text style={{ textAlign: 'center' }}>Powered By @JJIT</Text>
+          <View style={{ alignContent: 'center', justifyContent: 'center' }}>
+            <Text style={{ textAlign: 'center',marginBottom:10 }}>Powered By @JJIT</Text>
           </View>
         </View>
       );
@@ -174,7 +174,6 @@ const styles = {
   text: {
     width: 300,
     height: 200,
-
   },
   subtitle: {
     color: 'white',
@@ -241,13 +240,13 @@ var menuItems = [];
 const menusSecondaryItems = [
   {
     id: 190,
-    title: 'My Profile',
+    title: 'Accounts',
     icon: 'ios-person',
     key: 'home'
   },
   {
     id: 519,
-    title: 'Accounts',
+    title: 'My Profile',
     icon: 'ios-person-add',
     key: 'signup'
   },
@@ -287,6 +286,20 @@ const menusSecondaryItems = [
   },
   {
     id: 25,
+    key: 'newsletter',
+    title: 'Change mPin',
+    icon: 'md-paper',
+    key: 'newsletter'
+  },
+  {
+    id: 26,
+    key: 'newsletter',
+    title: 'Change mPin',
+    icon: 'md-paper',
+    key: 'newsletter'
+  },
+  {
+    id: 27,
     key: 'newsletter',
     title: 'Change mPin',
     icon: 'md-paper',
